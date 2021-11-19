@@ -1,0 +1,36 @@
+CREATE TABLE users (
+ id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+first_name varchar(50) NOT NULL,
+last_name varchar(50) NOT NULL,
+email varchar(50) NOT NULL,
+user_name varchar(50) NOT NULL,
+password varchar(50) NOT NULL
+);
+
+CREATE TABLE reservations (
+ id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+user_id integer,
+date int NOT NULL,
+time int NOT NULL,
+amount varchar(50) NOT NULL,
+is_approved boolean
+);
+
+CREATE TABLE sport_events (
+  date int NOT NULL,
+time int NOT NULL,
+match varchar(50) NOT NULL
+);
+
+CREATE TABLE user_roles (
+ id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+ admin varchar(50) NOT NULL
+)
+
+
+CREATE TABLE sessions (
+  id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  token varchar(90),
+  expiry varchar,
+  user_id integer REFERENCE users(id) ON DELETE CASCADE
+)
