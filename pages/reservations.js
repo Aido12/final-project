@@ -1,13 +1,18 @@
 import Link from 'next/link';
+import { useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import Number from '../components/Number';
 
 export default function Reservations() {
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
   return (
     <div>
       <Header />
 
-      {/* <form>
+      <form>
         <label>
           First Name
           <input
@@ -29,7 +34,7 @@ export default function Reservations() {
             onChange={(event) => setEmail(event.currentTarget.value)}
           />
         </label>
-        <label>
+        {/* <label>
           Username
           <input
             value={username}
@@ -37,8 +42,10 @@ export default function Reservations() {
           />
         </label>
         <label></label>
-        <button onClick={() => router.push(destination)}>Submit</button>
-      </form> */}
+        <button onClick={() => router.push(destination)}>Submit</button> */}
+        <Number />
+      </form>
+      <Footer />
     </div>
   );
 }

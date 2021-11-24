@@ -17,7 +17,7 @@ const footer = css`
   left: 0;
   bottom: 0;
 
-  background: #c4c4c4;
+  background-image: linear-gradient(#c4c4c4, grey);
   li {
     list-style: none;
   }

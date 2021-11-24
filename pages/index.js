@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 const main = css`
-  background: #c4c4c4;
+  background-image: linear-gradient(#c4c4c4, grey, #c4c4c4);
 
   img {
     display: block;
@@ -13,6 +13,7 @@ const main = css`
     width: 80%;
     height: 90%;
     border-radius: 15px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 `;
 export default function Home() {
@@ -21,12 +22,7 @@ export default function Home() {
       <Header />
       <main css={main}>
         <div>
-          <img
-            src="/images/geesebar1.jpeg"
-            alt="bar"
-            width="75%"
-            height="500px"
-          />
+          <img src="/images/bar3.jpeg" alt="bar" width="75%" height="500px" />
         </div>
       </main>
       <Footer />

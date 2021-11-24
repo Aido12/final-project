@@ -23,6 +23,13 @@ export type UserWithPasswordHash = User & {
   passwordHash: string;
 };
 
+export type Sport = {
+  id: number;
+  date: Date;
+  time: string;
+  match: string;
+};
+
 export async function insertUser({
   first_name,
   last_name,
@@ -117,4 +124,102 @@ export async function deleteSessionByToken(token: string) {
   `;
 
   return sessions.map((session) => camelcaseKeys(session))[0];
+}
+
+export async function insertSport({
+  date,
+  time,
+  match,
+}: {
+  date: number;
+  time: number;
+  match: string;
+}) {
+  const [sport] = await sql<[Sport | undefined]>`
+    INSERT INTO sports
+      (date, time, match)
+    VALUES
+      (${date}, ${time}, ${match})
+    RETURNING
+ date,
+ time,
+ match
+  `;
+  return sport && camelcaseKeys(sport);
+}
+
+export async function getSports() {
+  const sports = await sql<Sport[]>`
+      SELECT
+         id,
+       date,
+       time,
+       match
+      FROM
+        sports
+         `;
+  // console.log('proooo', products);
+  return sports.map((sport) => {
+    return camelcaseKeys(sport);
+  });
+}
+
+export async function getSportById(id: number) {
+  const [sport] = await sql<[Sport]>`
+      SELECT
+      id,
+    date,
+    time,
+    match
+      FROM
+     sportsform
+      Where
+      id =${id}
+      `;
+  return camelcaseKeys(sport);
+}
+
+export async function deleteSportById(id: number) {
+  const [sport] = await sql<[Sport | undefined]>`
+    DELETE FROM
+      sports
+    WHERE
+      id = ${id}
+    RETURNING
+    id,
+    date,
+    time,
+    match
+  `;
+  return sport && camelcaseKeys(sport);
+}
+
+export async function updateSportById(
+  id: number,
+  {
+    date,
+    time,
+    match,
+  }: {
+    date: number;
+    time: number;
+    match: string;
+  },
+) {
+  const [sport] = await sql<[Sport | undefined]>`
+    UPDATE
+      sports
+    SET
+      date = ${date},
+      time = ${time},
+      match = ${match}
+    WHERE
+      id = ${id}
+    RETURNING
+      id,
+     date,
+     time,
+     match
+  `;
+  return sport && camelcaseKeys(sport);
 }

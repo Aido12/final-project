@@ -1,4 +1,11 @@
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import { DownOutlined } from '@ant-design/icons';
 import { css } from '@emotion/react';
+// import { setUncaughtExceptionCaptureCallback } from 'process';
+// import { useState } from 'react';
+// import { Dropdown } from 'react-bootstrap';
+// import Dropdown from '@restart/ui/esm/Dropdown';
+// import { Dropdown, Menu } from 'antd';
 import Link from 'next/link';
 
 const navStyles = css`
@@ -8,7 +15,7 @@ const navStyles = css`
   left: 0px;
   top: 0px;
   border: 1px solid #666;
-  background: #c4c4c4;
+  background-image: linear-gradient(grey, #c4c4c4);
   z-index: 1;
 
   header {
@@ -33,9 +40,12 @@ const navStyles = css`
     padding: 50px, 50px;
     border-radius: 50px;
     gap: 100px;
+    color: #000000;
+    /* text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25); */
   }
   a:hover {
-    transform: scale(1.3);
+    transform: scale(1.5);
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
   }
 `;
 
@@ -53,9 +63,9 @@ export default function Header() {
         <Link href="/gallery">
           <a> Gallery </a>
         </Link>
-        <Link href="/sportsdiary">
+        {/* <Link href="/livesports">
           <a>Sports</a>
-        </Link>
+        </Link> */}
         <Link href="/reservations">
           <a> Reservations</a>
         </Link>

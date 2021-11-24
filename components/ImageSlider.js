@@ -44,7 +44,7 @@ const slider = css`
   }
 
   .slide {
-    opacity: 0;
+    opacity: 1;
     transition-duration: 1s ease;
   }
 
@@ -70,22 +70,24 @@ const ImageSlider = ({ slides }) => {
   }
 
   return (
-    <section css={slider} className="slider">
-      <LeftCircleOutlined className="left-arrow" onClick={prevSlide} />
-      <RightCircleOutlined className="right-arrow" onClick={nextSlide} />
-      {SliderData.map((slide, index) => {
-        return (
-          <div
-            className={index === current ? 'slide active' : 'slide'}
-            key={index}
-          >
-            {index === current && (
-              <img src={slide.image} alt="pub" className="image" />
-            )}
-          </div>
-        );
-      })}
-    </section>
+    <div>
+      <section css={slider} className="slider">
+        <LeftCircleOutlined className="left-arrow" onClick={prevSlide} />
+        <RightCircleOutlined className="right-arrow" onClick={nextSlide} />
+        {SliderData.map((slide, index) => {
+          return (
+            <div
+              className={index === current ? 'slide active' : 'slide'}
+              key={index}
+            >
+              {index === current && (
+                <img src={slide.image} alt="pub" className="image" />
+              )}
+            </div>
+          );
+        })}
+      </section>
+    </div>
   );
 };
 
