@@ -25,8 +25,8 @@ export type UserWithPasswordHash = User & {
 
 export type Sport = {
   id: number;
-  date: Date;
-  time: string;
+  date: number;
+  time: number;
   match: string;
 };
 
@@ -136,7 +136,7 @@ export async function insertSport({
   match: string;
 }) {
   const [sport] = await sql<[Sport | undefined]>`
-    INSERT INTO sports
+    INSERT INTO sport_events
       (date, time, match)
     VALUES
       (${date}, ${time}, ${match})
@@ -156,7 +156,7 @@ export async function getSports() {
        time,
        match
       FROM
-        sports
+        sport_events
          `;
   // console.log('proooo', products);
   return sports.map((sport) => {
@@ -172,7 +172,7 @@ export async function getSportById(id: number) {
     time,
     match
       FROM
-     sportsform
+     sportsadmin
       Where
       id =${id}
       `;
@@ -208,7 +208,7 @@ export async function updateSportById(
 ) {
   const [sport] = await sql<[Sport | undefined]>`
     UPDATE
-      sports
+      sport
     SET
       date = ${date},
       time = ${time},

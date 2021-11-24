@@ -15,9 +15,9 @@ export default async function handlerSport(
     console.log('from POST', body);
     // the code for the POST request
     const insertedSport = await insertSport({
-      date: req.body.sportDate,
-      time: req.body.sportTime,
-      match: req.body.sportMatch,
+      date: req.body.date,
+      time: req.body.time,
+      match: req.body.match,
     });
 
     return res.status(200).json(insertedSport);
@@ -25,3 +25,5 @@ export default async function handlerSport(
 
   return res.status(405);
 }
+
+// hint: now the problem is in the database. either the query in database.js or in the creation of the database (migrations)''

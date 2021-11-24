@@ -39,7 +39,7 @@ export default function Sportsform(props) {
 
   async function insertSport() {
     console.log(date, time, match);
-    const sportResponse = await fetch(`/api/sportsdiary/index`, {
+    const sportResponse = await fetch('/api/sportsdiary/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
