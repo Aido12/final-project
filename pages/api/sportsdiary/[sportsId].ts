@@ -1,29 +1,25 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import {
-  deleteSportById,
-  getSportById,
-  updateSportById,
-} from '../../../util/database';
+import { deleteSport, getSports, updateSport } from '../../../util/database';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
   if (req.method === 'GET') {
-    const sport = await getSportById(Number(req.query.sportId));
-    res.status(200).json(sport);
+    const sports = await getSports();
+    res.status(200).json(sports);
   } else if (req.method === 'DELETE') {
     console.log('query', req.query);
     // the code for the POST request
-    const deleteSport = await deleteSportById(Number(req.query.sportId));
+    const deleteSport = await deleteSport(Number());
 
-    return res.status(200).json(deleteSport);
+    return res.status(200).json();
   } else if (req.method === 'PATCH') {
     const body = req.body;
     const query = req.query;
     console.log('from PATCH', body);
 
-    const updatedSport = await updateSportById(Number(query.sportId), {
+    const updatedSport = await updateSport(), {
       date: body.date,
       time: body.time,
       match: body.match,

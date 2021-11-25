@@ -58,7 +58,7 @@ export default function RegisterPage(props: Props) {
                 typeof router.query.returnTo === 'string' &&
                 router.query.returnTo
                   ? router.query.returnTo
-                  : `/reservations/${registerJson.user.id}`;
+                  : `/`;
 
               // props.refreshUsername();
               router.push(destination);

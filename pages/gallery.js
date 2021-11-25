@@ -13,9 +13,9 @@ function App() {
     <div>
       <Header />
       <main css={main}>
-        <div>
-          <ImageSlider slides={SliderData} />
-        </div>
+        {/* <div> */}
+        <ImageSlider slides={SliderData} />
+        {/* </div> */}
       </main>
       <Footer />
     </div>

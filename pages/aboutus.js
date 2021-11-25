@@ -20,7 +20,7 @@ const image = css`
 const about = css`
   /* background: #c4c4c4;
   background-image: url('/images/drinks2.jpeg'); */
-  color: white;
+  color: #000068;
   text-align: center;
   margin-left: 20%;
   margin-right: 20%;

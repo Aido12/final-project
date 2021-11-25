@@ -1,8 +1,8 @@
 exports.up = async function up(sql) {
   await sql`
 CREATE TABLE sport_events (
-  date int NOT NULL,
-time int NOT NULL,
+date varchar(50) NOT NULL,
+time varchar(50) NOT NULL,
 match varchar(50) NOT NULL
 );
 `;

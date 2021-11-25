@@ -5,26 +5,21 @@ import Header from '../components/Header';
 import Number from '../components/Number';
 
 export default function Reservations() {
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [time, setTime] = useState('');
+  const [guests, setGuests] = useState('');
+  const [date, setDate] = useState('');
   return (
     <div>
       <Header />
 
       <form>
         <label>
-          First Name
+          First Name & Last Name
           <input
-            value={firstname}
-            onChange={(event) => setFirstname(event.currentTarget.value)}
-          />
-        </label>
-        <label>
-          Last Name
-          <input
-            value={lastname}
-            onChange={(event) => setLastname(event.currentTarget.value)}
+            value={name}
+            onChange={(event) => setName(event.currentTarget.value)}
           />
         </label>
         <label>
@@ -34,16 +29,38 @@ export default function Reservations() {
             onChange={(event) => setEmail(event.currentTarget.value)}
           />
         </label>
-        {/* <label>
-          Username
+        <label>
+          No. of People
           <input
-            value={username}
-            onChange={(event) => setUsername(event.currentTarget.value)}
+            value={guests}
+            type="number"
+            onChange={(event) => setGuests(event.currentTarget.value)}
           />
         </label>
-        <label></label>
-        <button onClick={() => router.push(destination)}>Submit</button> */}
-        <Number />
+        <label>
+          time
+          <input
+            value={time}
+            type="time"
+            onChange={(event) => setTime(event.currentTarget.value)}
+          />
+        </label>
+        <label>
+          Date
+          <input
+            value={date}
+            type="date"
+            onChange={(event) => setDate(event.currentTarget.value)}
+          />
+        </label>
+        <button
+            onClick={(event) => {
+              event.preventDefault();
+              ();
+            }}
+          >
+            Submit
+          </button>
       </form>
       <Footer />
     </div>

@@ -39,12 +39,12 @@ export default function LiveSport(props) {
           <h1> Sports</h1>
           <h3>Beer</h3>
           <ul>
-            {props.sports.map((sports) => {
+            {props.sports.map((sport) => {
               return (
-                <li key={sports.id}>
-                  <li>{sports.date} </li>
-                  <li>{sports.time} </li>
-                  <li>{sports.match} </li>
+                <li key={sport.date}>
+                  <li>{sport.date} </li>
+                  <li>{sport.time} </li>
+                  <li>{sport.match} </li>
                 </li>
               );
             })}
@@ -57,10 +57,11 @@ export default function LiveSport(props) {
 }
 
 export async function getServerSideProps() {
-  const getSports = await import('../util/database');
+  const { getSports } = await import('../util/database');
 
-  const sport = await getSports();
+  const sports = await getSports();
+
   return {
-    props: { sport },
+    props: { sports },
   };
 }

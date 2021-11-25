@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -32,6 +33,7 @@ const bev = css`
 `;
 
 export default function Sportsform(props) {
+  const router = useRouter();
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [match, setMatch] = useState('');
@@ -52,22 +54,6 @@ export default function Sportsform(props) {
     setSportList(newSport);
   }
 
-  async function deleteSport(id) {
-    const sportResponse = await fetch(
-      `${props.baseUrl}/api/sportsdiary/${id}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
-    );
-
-    const deletedSport = await sportResponse.json();
-    const newSport = sportList.filter((user) => user.id !== deletedSport.id);
-    setSportList(newSport);
-  }
-
   async function updateSport(id, newDate, newTime, newMatch) {
     const sportResponse = await fetch(
       `${props.baseUrl}/api/sportsdiary/${id}`,
@@ -83,19 +69,6 @@ export default function Sportsform(props) {
         }),
       },
     );
-
-    const updatedSport = await sportResponse.json();
-
-    const newSport = [...sportList];
-
-    const outdatedSport = newSport.find(
-      (sport) => sport.id === updatedSport.id,
-    );
-
-    outdatedSport.name = updatedSport.name;
-    outdatedSport.favoriteColor = updatedSport.favoriteColor;
-
-    setSportList(newSport);
   }
   return (
     <div css={background}>
@@ -130,23 +103,48 @@ export default function Sportsform(props) {
           <button
             onClick={(event) => {
               event.preventDefault();
-              insertSport(date, time, match);
             }}
           >
             Submit
           </button>
         </form>
-        {/* <label>
-          update Date:
-          <input
-            value={updateSport}
-            onChange={(e) => setUpdateSport(e.currentTarget.value)}
-          />
-        </label> */}
+        <ul>
+          {props.sports.map((sport) => {
+            return (
+              <div key={sport.date}>
+                <li>{sport.date} </li>
+                <li>{sport.time} </li>
+                <li>{sport.match} </li>
+                <button
+                  onClick={async (event) => {
+                    event.preventDefault();
+                    await fetch(`/api/sportsdiary`, {
+                      method: 'DELETE',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                    });
+                    router.push(`/livesports`);
+                  }}
+                >
+                  DELETE
+                </button>
+              </div>
+            );
+          })}
+        </ul>
       </main>
       <Footer />
     </div>
   );
 }
 
-// export async function getServerSideProps() {}
+export async function getServerSideProps() {
+  const { getSports } = await import('../util/database');
+
+  const sports = await getSports();
+  console.log(sports);
+  return {
+    props: { sports },
+  };
+}

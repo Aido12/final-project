@@ -19,7 +19,7 @@ const errorsStyles = css`
 //   refreshUsername: () => void;
 //   username?: string;
 // };
-export default function LoginPage(props: { refreshUsername: () => void }) {
+export default function LoginPage() {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -54,7 +54,7 @@ export default function LoginPage(props: { refreshUsername: () => void }) {
                 typeof router.query.returnTo === 'string' &&
                 router.query.returnTo
                   ? router.query.returnTo
-                  : `/sportsdiary`;
+                  : `/sportadmin`;
 
               // props.refreshUsername();
 
@@ -122,7 +122,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     return {
       redirect: {
-        destination: '/sportsdiary',
+        destination: '/login',
         permanent: false,
       },
     };

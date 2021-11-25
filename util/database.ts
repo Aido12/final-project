@@ -131,8 +131,8 @@ export async function insertSport({
   time,
   match,
 }: {
-  date: number;
-  time: number;
+  date: string;
+  time: string;
   match: string;
 }) {
   const [sport] = await sql<[Sport | undefined]>`
@@ -151,12 +151,13 @@ export async function insertSport({
 export async function getSports() {
   const sports = await sql<Sport[]>`
       SELECT
-         id,
+
        date,
        time,
        match
       FROM
         sport_events
+        ORDER BY date ASC;
          `;
   // console.log('proooo', products);
   return sports.map((sport) => {
@@ -172,43 +173,40 @@ export async function getSportById(id: number) {
     time,
     match
       FROM
-     sportsadmin
+     sport_events
       Where
       id =${id}
       `;
   return camelcaseKeys(sport);
 }
 
-export async function deleteSportById(id: number) {
+export async function deleteSport() {
   const [sport] = await sql<[Sport | undefined]>`
     DELETE FROM
-      sports
+      sport_events
     WHERE
-      id = ${id}
-    RETURNING
-    id,
     date,
-    time,
-    match
+       time,
+       match
+
+
+
   `;
   return sport && camelcaseKeys(sport);
 }
 
-export async function updateSportById(
-  id: number,
-  {
-    date,
-    time,
-    match,
-  }: {
-    date: number;
-    time: number;
-    match: string;
-  },
-) {
+export async function updateSport({
+  date,
+  time,
+  match,
+}: {
+  date: string;
+  time: string;
+  match: string;
+}) {
   const [sport] = await sql<[Sport | undefined]>`
     UPDATE
-      sport
+      sport_events
     SET
       date = ${date},
       time = ${time},
