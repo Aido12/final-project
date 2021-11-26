@@ -20,7 +20,7 @@ const bev = css`
   margin-bottom: 20px;
   font-weight: 600;
   text-shadow: 100px 100px 100px rgba(0, 0, 0, 0.25);
-  background-image: linear-gradient(grey, #c4c4c4);
+  background-image: linear-gradient(grey, #c4c4c4, grey);
 
   li {
     list-style: none;
@@ -43,7 +43,7 @@ export default function drinks() {
             <li>Beef Burger........€13.90</li>
             <li>Popcorn Chicken........€11.90</li>
             <li>Club Sandwich........€11.90</li>
-            <li>Hot Chicken Wings........9.90</li>
+            <li>Hot Chicken Wings........€9.90</li>
           </ul>
           <p> All come served with Fries</p>
         </div>

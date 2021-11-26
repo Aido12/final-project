@@ -24,9 +24,8 @@ export type UserWithPasswordHash = User & {
 };
 
 export type Sport = {
-  id: number;
-  date: number;
-  time: number;
+  date: string;
+  time: string;
   match: string;
 };
 
@@ -141,6 +140,7 @@ export async function insertSport({
     VALUES
       (${date}, ${time}, ${match})
     RETURNING
+    id,
  date,
  time,
  match
@@ -151,7 +151,7 @@ export async function insertSport({
 export async function getSports() {
   const sports = await sql<Sport[]>`
       SELECT
-
+        id,
        date,
        time,
        match
@@ -159,65 +159,25 @@ export async function getSports() {
         sport_events
         ORDER BY date ASC;
          `;
-  // console.log('proooo', products);
+
   return sports.map((sport) => {
     return camelcaseKeys(sport);
   });
 }
 
-export async function getSportById(id: number) {
-  const [sport] = await sql<[Sport]>`
-      SELECT
-      id,
-    date,
-    time,
-    match
-      FROM
-     sport_events
-      Where
-      id =${id}
-      `;
-  return camelcaseKeys(sport);
-}
-
-export async function deleteSport() {
+export async function deleteSport(id: number) {
   const [sport] = await sql<[Sport | undefined]>`
     DELETE FROM
       sport_events
     WHERE
-    date,
-       time,
-       match
-
-
-
-  `;
-  return sport && camelcaseKeys(sport);
-}
-
-export async function updateSport({
-  date,
-  time,
-  match,
-}: {
-  date: string;
-  time: string;
-  match: string;
-}) {
-  const [sport] = await sql<[Sport | undefined]>`
-    UPDATE
-      sport_events
-    SET
-      date = ${date},
-      time = ${time},
-      match = ${match}
-    WHERE
-      id = ${id}
-    RETURNING
-      id,
+   id=${id}
+       RETURNING
+       id,
      date,
      time,
      match
+
+
   `;
   return sport && camelcaseKeys(sport);
 }

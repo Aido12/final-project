@@ -25,9 +25,18 @@ const bev = css`
     list-style: none;
   }
   ul {
+    list-style: none;
     margin-left: 100px;
-    margin-right: 100px;
+    margin-right: 80px;
+    width: 40%;
+    padding: 10px;
+    border-radius: 10px;
   }
+`;
+const match = css`
+  white-space: nowrap;
+
+  text-overflow: clip;
 `;
 
 export default function LiveSport(props) {
@@ -37,14 +46,14 @@ export default function LiveSport(props) {
       <main css={bev}>
         <div>
           <h1> Sports</h1>
-          <h3>Beer</h3>
+          <h3>Football</h3>
           <ul>
             {props.sports.map((sport) => {
               return (
-                <li key={sport.date}>
+                <li key={sport.id}>
                   <li>{sport.date} </li>
                   <li>{sport.time} </li>
-                  <li>{sport.match} </li>
+                  <li css={match}>{sport.match} </li>
                 </li>
               );
             })}

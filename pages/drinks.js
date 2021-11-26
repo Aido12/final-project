@@ -19,7 +19,7 @@ const bev = css`
   margin-bottom: 20px;
   font-weight: 600;
   text-shadow: 100px 100px 100px rgba(0, 0, 0, 0.25);
-  background-image: linear-gradient(grey, #c4c4c4);
+  background-image: linear-gradient(#c4c4c4, grey, #c4c4c4);
 
   li {
     list-style: none;

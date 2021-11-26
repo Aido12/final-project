@@ -2,23 +2,52 @@ import { css } from '@emotion/react';
 import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import { Errors } from '../util/types';
 import { LoginResponse } from './api/login';
 
-// import Header from '../components/Header';
+const main = css`
+  background-image: url('/images/drinks2.jpeg');
+`;
+const form = css`
+  background: linear-gradient(#c4c4c4, grey, #c4c4c4);
+  /* display: flex;
 
-const formStyles = css`
-  label {
-    display: block;
+  color: black;
+  text-align: center;
+  justify-content: center; */
+  text-shadow: 100px 100px 100px rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(#c4c4c4, grey, #c4c4c4);
+  /* width: 50%; */
+  margin-right: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  margin-left: 20%;
+  margin-right: 20%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  button {
+    width: 100%;
+    background-image: linear-gradient(to right, grey, #c4c4c4, grey);
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
   }
 `;
-const errorsStyles = css`
-  color: red;
-`;
-// type props = {
-//   refreshUsername: () => void;
-//   username?: string;
-// };
+
 export default function LoginPage() {
   const router = useRouter();
   const [username, setUsername] = useState('');
@@ -26,11 +55,11 @@ export default function LoginPage() {
   const [errors, setErrors] = useState<Errors>([]);
   return (
     <div>
-      <main>
-        <div>
+      <Header />
+      <main css={main}>
+        <div css={form}>
           <h1>Login</h1>
           <form
-            css={formStyles}
             onSubmit={async (event) => {
               event.preventDefault();
               const loginResponse = await fetch('/api/login', {
@@ -82,12 +111,13 @@ export default function LoginPage() {
             </button>
           </form>
         </div>
-        <div css={errorsStyles}>
+        <div>
           {errors.map((error) => (
             <div key={`error-${error.message}`}>{error.message}</div>
           ))}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

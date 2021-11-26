@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { useRouter } from 'next/dist/client/router';
+import Link from 'next/link';
 import { useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -23,12 +24,31 @@ const bev = css`
   text-shadow: 100px 100px 100px rgba(0, 0, 0, 0.25);
   background-image: linear-gradient(grey, #c4c4c4);
 
+  input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  form {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
   li {
     list-style: none;
   }
   ul {
     margin-left: 100px;
     margin-right: 100px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
   }
 `;
 
@@ -54,22 +74,6 @@ export default function Sportsform(props) {
     setSportList(newSport);
   }
 
-  async function updateSport(id, newDate, newTime, newMatch) {
-    const sportResponse = await fetch(
-      `${props.baseUrl}/api/sportsdiary/${id}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          sportDate: newDate,
-          sportTime: newTime,
-          sportMatch: newMatch,
-        }),
-      },
-    );
-  }
   return (
     <div css={background}>
       <Header />
@@ -103,6 +107,8 @@ export default function Sportsform(props) {
           <button
             onClick={(event) => {
               event.preventDefault();
+              insertSport(date, time, match);
+              router.push('/sportadmin');
             }}
           >
             Submit
@@ -111,20 +117,21 @@ export default function Sportsform(props) {
         <ul>
           {props.sports.map((sport) => {
             return (
-              <div key={sport.date}>
+              <div key={sport.id}>
                 <li>{sport.date} </li>
                 <li>{sport.time} </li>
                 <li>{sport.match} </li>
                 <button
                   onClick={async (event) => {
                     event.preventDefault();
-                    await fetch(`/api/sportsdiary`, {
+
+                    await fetch(`/api/sportsdiary/${sport.id}`, {
                       method: 'DELETE',
                       headers: {
                         'Content-Type': 'application/json',
                       },
                     });
-                    router.push(`/livesports`);
+                    router.reload();
                   }}
                 >
                   DELETE

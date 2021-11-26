@@ -63,20 +63,23 @@ export default function Header() {
         <Link href="/gallery">
           <a> Gallery </a>
         </Link>
-        {/* <Link href="/livesports">
+        <Link href="/livesports">
           <a>Sports</a>
-        </Link> */}
+        </Link>
         <Link href="/reservations">
           <a> Reservations</a>
         </Link>
-        <Link href="/login">
-          <a>Login</a>
+        <Link href="/food">
+          <a>Food</a>
         </Link>
-        <Link href="/register">
-          <a> Register</a>
+        <Link href="/drinks">
+          <a> Drinks</a>
+        </Link>
+        <Link href="/login">
+          <a> Login</a>
         </Link>
         <Link href="/logout">
-          <a> Logout</a>
+          <a>Logout</a>
         </Link>
       </nav>
     </div>
