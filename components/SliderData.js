@@ -1,4 +1,4 @@
-export const SliderData = [
+export const sliderData = [
   {
     image: '/images/geesebar1.jpeg',
   },

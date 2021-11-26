@@ -1,7 +1,7 @@
 import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons';
 import { css } from '@emotion/react';
 import { useState } from 'react';
-import { SliderData } from './SliderData';
+import { sliderData } from './SliderData';
 
 const slider = css`
   .slider {
@@ -74,11 +74,11 @@ const ImageSlider = ({ slides }) => {
       <section css={slider} className="slider">
         <LeftCircleOutlined className="left-arrow" onClick={prevSlide} />
         <RightCircleOutlined className="right-arrow" onClick={nextSlide} />
-        {SliderData.map((slide, index) => {
+        {sliderData.map((slide, index) => {
           return (
             <div
               className={index === current ? 'slide active' : 'slide'}
-              key={index}
+              key={slider}
             >
               {index === current && (
                 <img src={slide.image} alt="pub" className="image" />
