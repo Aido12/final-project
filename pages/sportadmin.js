@@ -84,7 +84,7 @@ export default function Sportsform(props) {
             Date
             <input
               value={date}
-              // type="date"
+              type="date"
               onChange={(event) => setDate(event.currentTarget.value)}
             />
           </label>

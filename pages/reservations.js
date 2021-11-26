@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import Link from 'next/link';
 import { useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
