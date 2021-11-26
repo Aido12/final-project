@@ -1,11 +1,4 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import { DownOutlined } from '@ant-design/icons';
 import { css } from '@emotion/react';
-// import { setUncaughtExceptionCaptureCallback } from 'process';
-// import { useState } from 'react';
-// import { Dropdown } from 'react-bootstrap';
-// import Dropdown from '@restart/ui/esm/Dropdown';
-// import { Dropdown, Menu } from 'antd';
 import Link from 'next/link';
 
 const navStyles = css`
@@ -77,9 +70,6 @@ export default function Header() {
         </Link>
         <Link href="/login">
           <a> Login</a>
-        </Link>
-        <Link href="/logout">
-          <a>Logout</a>
         </Link>
       </nav>
     </div>
