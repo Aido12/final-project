@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ImageSlider from '../components/ImageSlider';
-import { SliderData } from '../components/SliderData';
+import { sliderData } from '../components/SliderData';
 
 const main = css`
   background-image: linear-gradient(#c4c4c4, grey, #c4c4c4);
@@ -14,7 +14,7 @@ function App() {
       <Header />
       <main css={main}>
         {/* <div> */}
-        <ImageSlider slides={SliderData} />
+        <ImageSlider slides={sliderData} />
         {/* </div> */}
       </main>
       <Footer />
