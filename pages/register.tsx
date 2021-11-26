@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { GetServerSidePropsContext } from 'next';
+// import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
 import { Errors } from '../util/types';
@@ -15,7 +15,7 @@ const formStyles = css`
 const errorsStyles = css`
   color: red;
 `;
-export default function RegisterPage(props: Props) {
+export default function RegisterPage() {
   const router = useRouter();
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
