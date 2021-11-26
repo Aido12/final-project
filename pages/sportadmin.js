@@ -118,7 +118,7 @@ export default function Sportsform(props) {
           {props.sports.map((sport) => {
             return (
               <div key={sport.id}>
-                <li>{sport.date} </li>
+                <li>{sport.date}</li>
                 <li>{sport.time} </li>
                 <li>{sport.match} </li>
                 <button
