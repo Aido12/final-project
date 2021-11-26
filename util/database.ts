@@ -7,10 +7,10 @@ setPostgresDefaultsOnHeroku();
 
 export type User = {
   id: number;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  user_name: string;
+  userName: string;
 };
 
 export type Session = {
