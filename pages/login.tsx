@@ -106,7 +106,7 @@ export default function LoginPage() {
               />
             </label>
             <button>Login</button>
-            <button type="button" onClick={() => router.push('/')}>
+            <button type="button" onClick={() => router.push('/sportadmin')}>
               Back
             </button>
           </form>
